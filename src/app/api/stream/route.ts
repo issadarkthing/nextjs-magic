@@ -1,14 +1,13 @@
 export const dynamic = "force-dynamic"; // always run dynamically
 
 export async function GET() {
-    // This encoder will stream your text
     const encoder = new TextEncoder();
     const customReadable = new ReadableStream({
         async start(controller) {
-            while (true) {
-                await new Promise((resolve) => setTimeout(resolve, 1000));
-                controller.enqueue(encoder.encode((1).toString()));
-            }
+            await fetch(
+                "https://741e-2001-e68-5409-7938-28c8-1be3-c32e-b3aa.ngrok-free.app"
+            );
+            controller.enqueue(encoder.encode((1).toString()));
         },
     });
 
