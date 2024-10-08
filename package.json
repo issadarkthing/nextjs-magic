@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@magic-ext/oauth": "^22.10.0",
+    "@vercel/functions": "^1.4.2",
     "@web3modal/siwe": "^5.1.9",
     "ethers": "^6.13.2",
     "magic-sdk": "^28.10.0",

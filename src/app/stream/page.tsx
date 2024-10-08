@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 
 export default function Page() {
-    const [count, setCount] = useState(0);
+    const [text, setText] = useState("loading...");
 
     useEffect(() => {
         (async function () {
@@ -19,14 +19,13 @@ export default function Page() {
                 const decoder = new TextDecoder();
 
                 if (chunk.value) {
-                    const val = decoder.decode(chunk.value);
-                    console.log(val);
-                    const value = parseInt(val);
-                    setCount((prev) => prev + value);
+                    const value = decoder.decode(chunk.value);
+                    console.log(value);
+                    setText(value);
                 }
             }
         })();
     }, []);
 
-    return <div>Count: {count}</div>;
+    return <div>{text}</div>;
 }
