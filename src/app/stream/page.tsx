@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 
 export default function Page() {
-    const [text, setText] = useState<string[]>([]);
+    const [count, setCount] = useState(0);
 
     useEffect(() => {
         (async function () {
@@ -16,24 +16,15 @@ export default function Page() {
             while (!done) {
                 const chunk = await reader.read();
                 done = chunk.done;
-                const { value } = chunk;
                 const decoder = new TextDecoder();
 
-                if (value) {
-                    const text = decoder.decode(value);
-                    setText((prevText) => [...prevText, text]);
+                if (chunk.value) {
+                    const value = parseInt(decoder.decode(chunk.value));
+                    setCount((prev) => prev + value);
                 }
             }
-
-            setText(text);
         })();
     }, []);
 
-    return (
-        <div>
-            {text.map((x, i) => (
-                <div key={i}>{x}</div>
-            ))}
-        </div>
-    );
+    return <div>Count: {count}</div>;
 }

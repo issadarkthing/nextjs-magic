@@ -7,7 +7,7 @@ export async function GET() {
         async start(controller) {
             while (true) {
                 await new Promise((resolve) => setTimeout(resolve, 1000));
-                controller.enqueue(encoder.encode("Basic Streaming Test"));
+                controller.enqueue(encoder.encode((1).toString()));
             }
         },
     });
