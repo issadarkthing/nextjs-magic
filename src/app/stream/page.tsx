@@ -19,7 +19,9 @@ export default function Page() {
                 const decoder = new TextDecoder();
 
                 if (chunk.value) {
-                    const value = parseInt(decoder.decode(chunk.value));
+                    const val = decoder.decode(chunk.value);
+                    console.log(val);
+                    const value = parseInt(val);
                     setCount((prev) => prev + value);
                 }
             }
